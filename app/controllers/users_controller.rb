@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    redirect_to dashboard_path if logged_in?
     @user = User.new
   end
 
@@ -21,13 +22,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
 
-    if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
-    else
-      render :new
-    end
   end
 
   # PATCH/PUT /users/1
