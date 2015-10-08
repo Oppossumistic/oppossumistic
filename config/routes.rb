@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root 'sessions#new'
+  post 'sessions/create'
+  get 'login' => 'sessions#new'
+  get 'dashboard' => 'dashboards#show'
+  delete 'logout' => 'sessions#destroy'
+
   resources :surveys
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
