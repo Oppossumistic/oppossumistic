@@ -31,7 +31,7 @@ class SurveysController < ApplicationController
     @survey = Survey.new(survey_params)
 
     if @survey.save
-      redirect_to @survey, notice: 'Survey was successfully created.'
+      redirect_to new_question_path(survey_params), notice: 'Survey was successfully created.'
     else
       render :new
     end
@@ -60,6 +60,6 @@ class SurveysController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def survey_params
-      params.require(:survey).permit(:name, :question_id)
+      params.require(:survey).permit(:title, :question_id, :type, :radio, :short)
     end
 end

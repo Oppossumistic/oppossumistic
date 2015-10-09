@@ -1,6 +1,7 @@
 
+
 <% if current_user.surveys.count == 0 %>
-You have not created any surveys. Click here to create one! <%= link_to "New Survey", new_survey_path %>
+You have not created any surveys. Click here to create one!
 <% else %>
 <table>
   <thead>
@@ -25,7 +26,7 @@ You have not created any surveys. Click here to create one! <%= link_to "New Sur
 </table>
 
 <br>
-
-<%= link_to 'New Survey', new_survey_path %>
 <% end %>
+<%= link_to 'New Survey', new_survey_path %>
+<p></p>
 <%= link_to "Log Out", logout_path, method: :delete %>
