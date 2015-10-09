@@ -1,2 +1,45 @@
-<h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+
+<%= form_for(@question) do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<% case question_starter[0] %>
+<% when 'radio button question' %>
+<%= render 'options/new' local: {question_starter: question_starter[1]} %>
+<% when 'multiple choice question' %>
+<%= render 'options/new' local: {question_starter: question_starter[1]} %>
+<% when 'short answer question' %>
+<%= render 'freeforms/new' local: {question_starter: question_starter[1]} %>
+<% when 'long answer question' %>
+<%= render 'freeforms/new' local: {question_starter: question_starter[1]} %>
+<div>
+Is this question required?
+<%= f.radio_button_tag(:required, true) %>
+<%= f.label_tag(:required, "Yes") %>
+<%= f.radio_button_tag(:required, false) %>
+<%= f.label_tag(:required, "No") %>
+</div>
+
+<div>
+save and create next question as a
+<%= f.select(:question_starter) do %>
+  <% [['', ''],['radio button question', {type: option, radio: true}], ['multiple choice question', {type: option, radio: false}]], [['short answer question', {type: freeform, short: true}]], [['long answer question', {type: freeform, short: false}]].each do |c| -%>
+    <%= content_tag(:option, c.first, value: c.last) %>
+  <% end %>
+<% end %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
+
+<%= link_to 'Back', surveys_path %>
+<% end %>

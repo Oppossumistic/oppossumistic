@@ -1,0 +1,15 @@
+
+  <h3>Enter question name<h3>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <h3>Enter question description (optional)</h3>
+  <div class="field">
+    <%= f.label :description %><br>
+    <% if question_starter={type: freeform, short: false} %>
+    <%= f.text_area :description %>
+    <% else %>
+    <%= f.text_field :description %>
+    <% end %>
+  </div>

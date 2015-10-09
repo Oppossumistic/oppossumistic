@@ -2,6 +2,15 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def create
+    if @question.save
+      if params[:question_starter] == ['','']
+        redirect_to @survey, notice: 'Survey was successfully created.'
+      else
+        redirect_to :new(question_params)
+      end
+    else
+      render :new
+    end
   end
 
   def new

@@ -21,18 +21,17 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+  <div>
+    Create first question as a
+  <%= f.select(:question_starter) do %>
+    <% [['radio button question', {type: option, radio: true}], ['multiple choice question', {type: option, radio: false}]], [['short answer question', {type: freeform, short: true}]], [['long answer question', {type: freeform, short: false}]].each do |c| -%>
+      <%= content_tag(:option, c.first, value: c.last) %>
+    <% end %>
+  <% end %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
 
-<<<<<<< HEAD
-<%= link_to 'Click to save and add radio button question' new_question_path(type: option, radio: true) %>
-<%= link_to 'Click to save and add multiple choice question' new_question_path(type: option, radio: false) %>
-<%= link_to 'Click to save and add short answer question' new_question_path(type: freeform, short: true) %>
-<%= link_to 'Click to save and add long answer question' new_question_path(type: freeform, short: false) %>
-=======
-
-
->>>>>>> 6f36bb5179a39150910a75e9256c3a859da83073
 <%= link_to 'Back', surveys_path %>
+<% end %>
