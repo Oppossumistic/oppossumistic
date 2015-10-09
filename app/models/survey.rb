@@ -7,6 +7,8 @@ class Survey < ActiveRecord::Base
 
   before_create :generate_token
 
+  attr_accessor :question_starter
+
   protected
   def generate_token
     self.token = loop do

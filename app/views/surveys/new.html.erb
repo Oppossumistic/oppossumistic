@@ -23,7 +23,7 @@
   </div>
   <div>
     Create first question as a
-    <%= f.select("temp") do %>
+    <%= f.select(:question_starter) do %>
       <% [['radio button question', {type: :option, radio: true}],
       ['multiple choice question', {type: :option, radio: false}],
       ['short answer question', {type: :freeform, short: true}],

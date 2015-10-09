@@ -1,7 +1,7 @@
 
-<%= link_to 'Click to save and add radio button question' new_question_path(type: option, radio: true) %>
-<%= link_to 'Click to save and add multiple choice question' new_question_path(type: option, radio: false) %>
-<%= link_to 'Click to save and add short answer question' new_question_path(type: freeform, short: true) %>
-<%= link_to 'Click to save and add long answer question' new_question_path(type: freeform, short: false) %>
+<%= link_to 'Click to save and add radio button question' new_survey_question_path(type: option, radio: true) %>
+<%= link_to 'Click to save and add multiple choice question' new_survey_question_path(type: option, radio: false) %>
+<%= link_to 'Click to save and add short answer question' new_survey_question_path(type: freeform, short: true) %>
+<%= link_to 'Click to save and add long answer question' new_survey_question_path(type: freeform, short: false) %>
 
 <%= link_to 'Back', surveys_path %>
