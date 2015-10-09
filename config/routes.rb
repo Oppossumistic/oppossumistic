@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'dashboard' => 'dashboards#show'
 
-  get 'survey/take/:survey_token' => 'surveys#take'
+  get 'survey/take/:token' => 'surveys#take'
   resources :surveys do
     resources :questions
   end

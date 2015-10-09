@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :require_login
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def create
@@ -14,6 +15,7 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    @survey = Survey.find(params[:survey_id])
   end
 
   def destroy

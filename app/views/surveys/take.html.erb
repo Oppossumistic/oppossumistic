@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @survey.title %>
+</p>
+
+<% @survey.questions.each do |q| %>
+  <%= render partial: 'questions_individual', locals: {q: q} %>
