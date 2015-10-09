@@ -13,7 +13,9 @@ class User < ActiveRecord::Base
                       }
     validates :password, length: { minimum: 8 }, allow_nil: true
 
-    def self.digest(string)
-      BCrypt::Password.create(string)
-    end
+    # def self.digest(string)
+    #   BCrypt::Password.create(string)
+    # end
+
+
 end

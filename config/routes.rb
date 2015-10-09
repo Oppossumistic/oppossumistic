@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'sessions#new'
   post 'sessions/create'
   get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
   get 'dashboard' => 'dashboards#show'
   delete 'logout' => 'sessions#destroy'
 

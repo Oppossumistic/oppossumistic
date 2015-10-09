@@ -1,3 +1,3 @@
-class Option < ActiveRecord::Base
-  belongs_to :answer
+class Option < Question
+
 end

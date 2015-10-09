@@ -15,6 +15,6 @@ module ApplicationHelper
 
   def log_out
     forget
-    @current_user=nil
+    @current_user = nil
   end
 end
