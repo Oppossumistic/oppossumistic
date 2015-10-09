@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
   root 'sessions#new'
-  post 'sessions/create'
+
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
-  get 'dashboard' => 'dashboards#show'
   delete 'logout' => 'sessions#destroy'
 
+  get 'dashboard' => 'dashboards#show'
+
   get 'survey/take/:survey_token' => 'surveys#take'
-  resources :surveys
+  resources :surveys do
+    resources :questions
+  end
   resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -13,9 +13,9 @@ You have not created any surveys. Click here to create one! <%= link_to "New Sur
   <tbody>
     <% current_user.surveys.each do |survey| %>
       <tr>
-        <td><%= survey.name %></td>
+        <td><%= survey.title %></td>
         <td><%= link_to 'Stats', survey %></td>
-        <% if survey.empty? %>
+        <% if survey.questions.count == 0 %>
         <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
         <% end %>
         <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>

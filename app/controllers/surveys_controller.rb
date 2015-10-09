@@ -1,10 +1,16 @@
 class SurveysController < ApplicationController
+  before_action :require_login, except: [:take]
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
   include SurveysHelper
 
   # GET /surveys
   def index
     @surveys = Survey.all
+  end
+
+  # GET /survey/take/:survey_token
+  def take
+
   end
 
   # GET /surveys/1

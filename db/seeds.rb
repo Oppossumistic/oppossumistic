@@ -11,40 +11,48 @@ Question.destroy_all
 Survey.destroy_all
 
 
-50.times do
-  Survey.create!(
-      title: Faker::Lorem.sentence,
-      description: Faker::Lorem.paragraphs.join("\n")
-    )
-end
-
-100.times do
-  User.create!(
-    name: Faker::Name.name,
-    survey_id: rand(1..50),
-    password: Faker::Internet.password(8),
-    email: Faker::Internet.email
-    )
-end
 
 User.create!(
     name: "David Bernheisel",
-    survey_id: 1,
     password: "test1234",
     email: "david@bernheisel.com"
   )
 User.create!(
     name: "Julie David",
-    survey_id: 2,
     password: "test1234",
     email: "julie.angela.david@gmail.com"
   )
+
+100.times do
+  User.create!(
+    name: Faker::Name.name,
+    password: Faker::Internet.password(8),
+    email: Faker::Internet.email
+    )
+end
+
+users = User.all
+50.times do
+  Survey.create!(
+      title: Faker::Lorem.sentence,
+      description: Faker::Lorem.paragraphs.join("\n"),
+      user_id: users.sample.id
+    )
+end
+
+8.times do
+  Survey.create!(
+      title: Faker::Lorem.sentence,
+      description: Faker::Lorem.paragraphs.join("\n"),
+      user_id: [1,2].sample
+    )
+end
 
 surveys = Survey.all
 200.times do
   Question.create!(
     type: ["Dropdown", "Freeform", "Option"].sample,
-    title: Faker::Lorem.sentence(3) + "?",
+    query: Faker::Lorem.sentence(3) + "?",
     description: Faker::Lorem.paragraphs.join("\n"),
     required: [true, false].sample,
     survey_id: surveys.sample.id
