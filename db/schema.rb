@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008191002) do
+ActiveRecord::Schema.define(version: 20151009134657) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "type"
     t.integer  "question_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "taker_token"
   end
 
   create_table "freeforms", force: :cascade do |t|
@@ -44,18 +45,19 @@ ActiveRecord::Schema.define(version: 20151008191002) do
   create_table "surveys", force: :cascade do |t|
     t.string   "name"
     t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "survey_token"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "type"
     t.integer  "survey_id"
-    t.string   "password_digest"
+    t.string   "password"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

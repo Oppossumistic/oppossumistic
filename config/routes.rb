@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'dashboard' => 'dashboards#show'
   delete 'logout' => 'sessions#destroy'
 
+  get 'survey/take/:survey_token' => 'surveys#take'
   resources :surveys
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
