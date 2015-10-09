@@ -60,6 +60,6 @@ class SurveysController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def survey_params
-      params.require(:survey).permit(:title, :question_id, :type, :radio, :short)
+      params.require(:survey).permit(:title, :question_id, :type, :radio, :short, :question_starter)
     end
 end

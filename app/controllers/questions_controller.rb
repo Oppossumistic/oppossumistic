@@ -47,7 +47,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:survey_id, :type, :query, :description, :required, :short, :selected, :radio, :allow_other, :other, :answer)
+      params.require(:question).permit(:question_starter, :survey_id, :type, :query, :description, :required, :short, :selected, :radio, :allow_other, :other, :answer)
     end
 
 end
