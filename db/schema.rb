@@ -11,11 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008191002) do
+ActiveRecord::Schema.define(version: 20151009165417) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "type"
     t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "taker_token"
+  end
+
+  create_table "dropdowns", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.string   "name"
+    t.boolean  "selected"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -41,16 +51,28 @@ ActiveRecord::Schema.define(version: 20151008191002) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "surveys", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "question_id"
+  create_table "questions", force: :cascade do |t|
+    t.string   "type"
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "required"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "survey_id"
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "question_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "survey_token"
+    t.text     "description"
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "type"
     t.integer  "survey_id"
     t.string   "password_digest"
     t.string   "email"

@@ -1,6 +1,11 @@
 
+<<<<<<< HEAD
 <% if current_user.surveys.empty? %>
 You have not created any surveys. Click here to create one!
+=======
+<% if current_user.surveys.count == 0 %>
+You have not created any surveys. Click here to create one! <%= link_to "New Survey", new_survey_path %>
+>>>>>>> 99f154a92fe548cbed5862e2293b3cca32ccd8c7
 <% else %>
 <table>
   <thead>
