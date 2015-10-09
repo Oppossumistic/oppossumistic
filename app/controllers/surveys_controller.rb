@@ -8,9 +8,9 @@ class SurveysController < ApplicationController
     @surveys = Survey.all
   end
 
-  # GET /survey/take/:survey_token
+  # GET /survey/take/:token
   def take
-
+    @survey = Survey.find_by_token(params[:token])
   end
 
   # GET /surveys/1
