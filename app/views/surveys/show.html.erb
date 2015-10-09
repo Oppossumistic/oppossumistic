@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<h1>Your survey has been created!</h1>
+<p>Your unique survey link is: </p>
+<%= root_url %><%= take_survey_path(@survey.token) %>
 <p>
   <strong>Name:</strong>
   <%= @survey.title %>

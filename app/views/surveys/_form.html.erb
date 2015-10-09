@@ -10,16 +10,16 @@
       </ul>
     </div>
   <% end %>
+  <% @survey.question.each do |q| %>
+    <div class="field">
+      <%= f.label q.query %><br>
+    </div>
+    <div class="field">
+      <%= f.label q.description %><br>
+    </div>
+    <div class="actions">
+      <%= link_to 'Edit', redirect_to edit_question_path(q) %>
+    </div>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :question_id %><br>
-    <%= f.number_field :question_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
