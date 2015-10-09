@@ -9,6 +9,7 @@
 <% when 'long answer question' %>
 <%= render 'freeforms/new' local: {question_starter: question_starter[1]} %>
 <% when '' %>
+<% end %>
 <% redirect_to edit_survey_path %>
 <div>
 Is this question required?
