@@ -14,7 +14,7 @@
   <tbody>
     <% @surveys.each do |survey| %>
       <tr>
-        <td><%= survey.name %></td>
+        <td><%= survey.title %></td>
         <td><%= survey.question_id %></td>
         <td><%= link_to 'Show', survey %></td>
         <td><%= link_to 'Edit', edit_survey_path(survey) %></td>

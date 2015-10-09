@@ -6,9 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.destroy_all
+Question.destroy_all
+Survey.destroy_all
+
+
 50.times do
   Survey.create!(
-      name: Faker::Lorem.sentence
+      title: Faker::Lorem.sentence,
+      description: Faker::Lorem.paragraphs.join("\n")
     )
 end
 
@@ -33,6 +39,17 @@ User.create!(
     password: "test1234",
     email: "julie.angela.david@gmail.com"
   )
+
+surveys = Survey.all
+200.times do
+  Question.create!(
+    type: ["Dropdown", "Freeform", "Option"].sample,
+    title: Faker::Lorem.sentence(3) + "?",
+    description: Faker::Lorem.paragraphs.join("\n"),
+    required: [true, false].sample,
+    survey_id: surveys.sample.id
+  )
+end
 
  # create_table "answers", force: :cascade do |t|
  #    t.string   "type"
@@ -72,12 +89,5 @@ User.create!(
  #    t.datetime "updated_at",  null: false
  #  end
 
- #  create_table "questions", force: :cascade do |t|
- #    t.string   "type"
- #    t.string   "title"
- #    t.text     "description"
- #    t.boolean  "required"
- #    t.datetime "created_at",  null: false
- #    t.datetime "updated_at",  null: false
- #  end
+
 
