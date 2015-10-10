@@ -3,14 +3,18 @@
 <p>Your unique survey link is: </p>
 <%= root_url %><%= take_survey_path(@survey.token) %>
 <p>
-  <strong>Name:</strong>
+  <h3>Title:</h3>
   <%= @survey.title %>
+  <%= @survey.description %>
 </p>
 
 <p>
-  <strong>Questions:</strong>
-  <%= @survey.questions %>
+  <h3>Questions:</h3>
+  <% @survey.questions.each do |q| %>
+  <%= q.query %>
+  <%= q.description %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
-<%= link_to 'Back', surveys_path %>
+<%= link_to 'Back', dashboard_path %>

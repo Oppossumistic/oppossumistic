@@ -11,12 +11,8 @@
     </div>
   <% end %>
   <% @survey.question.each do |q| %>
-    <div class="field">
-      <%= f.label q.query %><br>
-    </div>
-    <div class="field">
-      <%= f.label q.description %><br>
-    </div>
+    <p><%= q.query %></p>
+    <p><%= q.description %></p>
     <div class="actions">
       <%= link_to 'Edit', redirect_to edit_question_path(q) %>
     </div>
