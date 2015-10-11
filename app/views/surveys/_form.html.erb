@@ -10,14 +10,14 @@
       </ul>
     </div>
   <% end %>
-  <% @survey.question.each do |q| %>
+  <% @survey.questions.each do |q| %>
     <div class="field">
       <%= f.label q.query %><br>
     </div>
     <div class="field">
       <%= f.label q.description %><br>
     </div>
-    <%= f.hidden_field(:user_id, current_user.id) %>
+    <%= f.hidden_field q.user_id, current_user.id %>
 
 
     <%# ff :_destroy %>

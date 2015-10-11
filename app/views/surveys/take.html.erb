@@ -6,4 +6,5 @@
 </p>
 
 <% @survey.questions.each do |q| %>
-  <%= render partial: 'questions_individual', locals: {q: q} %>
+  <%= render partial: 'questions/individual', locals: {q: q} %>
+<% end %>

@@ -1,9 +1,5 @@
   <%# requires q local variable %>
 
-  <p class="question-title"><%= q.query %></p>
+  <p class="question-title <%= "required" if q.required %>"><%= q.query %></p>
   <p class="question-description"><%= q.description %></p>
-  <p class="question-required">
-    <% if q.required %>
-    * required
-    <% end %>
   </p>
