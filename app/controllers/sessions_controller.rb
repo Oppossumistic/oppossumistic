@@ -1,14 +1,12 @@
 class SessionsController < ApplicationController
 
   def create
-    if (user = User.find_by_email(session_params[:email]))
-      if user && user.authenticate(session_params[:password])
-        session[:user_id] = user.id
-      else
-        redirect_to dashboard_path, notice: 'Login successful'
-      end
+    user = User.find_by_email(session_params[:email])
+    if user && user.authenticate(session_params[:password])
+      session[:user_id] = user.id
+      redirect_to dashboard_path, flash: {success: 'Successful Login'}
     else
-      redirect_to login_path, notice: 'Login unsuccessful'
+      redirect_to login_path, flash: {error: 'Invalid email/password combination'}
     end
   end
 
