@@ -9,9 +9,7 @@ Rails.application.routes.draw do
 
   get 'survey/take/:token' => 'surveys#take'
   resources :surveys do
-    resources :questions do
-      resources :answers
-    end
+    resources :questions
   end
 
   resources :users

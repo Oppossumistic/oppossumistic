@@ -49,7 +49,8 @@ end
 end
 
 surveys = Survey.all
-200.times do
+
+300.times do
   Question.create!(
     query: Faker::Lorem.sentence(3) + "?",
     description: Faker::Lorem.paragraphs.join("\n"),
@@ -58,35 +59,66 @@ surveys = Survey.all
   )
 end
 
- #  create_table "dropdowns", force: :cascade do |t|
- #    t.integer  "question_id"
- #    t.integer  "answer_id"
- #    t.string   "name"
- #    t.boolean  "selected"
- #    t.datetime "created_at",  null: false
- #    t.datetime "updated_at",  null: false
- #  end
+# ANSWER TEMPLATES
+400.times do
+  Dropdown.create!(
+    name: Faker::Lorem.sentence(1),
+    selected: false,
+    question_id: rand(1..100),
+    answer_id: nil
+  )
+end
 
- #  create_table "freeforms", force: :cascade do |t|
- #    t.integer  "question_id"
- #    t.integer  "answer_id"
- #    t.text     "answer"
- #    t.boolean  "short"
- #    t.datetime "created_at",  null: false
- #    t.datetime "updated_at",  null: false
- #  end
+400.times do
+  Option.create!(
+    name: Faker::Lorem.sentence(1),
+    selected: false,
+    question_id: rand(101..200),
+    answer_id: nil,
+    radio: [true, false].sample,
+    allow_other: [true, false].sample,
+    other: nil
+  )
+end
 
- #  create_table "options", force: :cascade do |t|
- #    t.integer  "question_id"
- #    t.integer  "answer_id"
- #    t.string   "name"
- #    t.boolean  "selected"
- #    t.boolean  "radio"
- #    t.boolean  "allow_other"
- #    t.text     "other"
- #    t.datetime "created_at",  null: false
- #    t.datetime "updated_at",  null: false
- #  end
+100.times do
+  Freeform.create!(
+    question_id: rand(201..300),
+    short: [true, false].sample
+  )
+end
+
+
+
+# ANSWERS
+400.times do
+  Dropdown.create!(
+    name: Faker::Lorem.sentence(1),
+    selected: false,
+    question_id: rand(1..100),
+  )
+end
+
+400.times do
+  Option.create!(
+    name: Faker::Lorem.sentence(1),
+    selected: false,
+    question_id: rand(101..200),
+    radio: [true, false].sample,
+    allow_other: [true, false].sample,
+    other: nil
+  )
+end
+
+
+
+
+
+
+AnswersQuestions.create!(
+   question_id: ,
+   answer_id:
+   )
 
 
 
