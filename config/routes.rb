@@ -9,8 +9,11 @@ Rails.application.routes.draw do
 
   get 'survey/take/:token' => 'surveys#take'
   resources :surveys do
-    resources :questions
+    resources :questions do
+      resources :answers
+    end
   end
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

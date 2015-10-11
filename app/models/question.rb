@@ -5,6 +5,9 @@ class Question < ActiveRecord::Base
   has_many :dropdowns
   has_many :freeforms
   has_many :options
+  has_many :dropdowns, foreign_key: 'answer_id'
+  has_many :freeforms, foreign_key: 'answer_id'
+  has_many :options, foreign_key: 'answer_id'
 
   validates :query, presence: true
 end
