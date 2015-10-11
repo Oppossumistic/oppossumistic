@@ -11,27 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151011201029) do
-
-  create_table "answers_questions", id: false, force: :cascade do |t|
-    t.integer "question_id", null: false
-    t.integer "answer_id",   null: false
-  end
-
-  add_index "answers_questions", ["answer_id", "question_id"], name: "index_answers_questions_on_answer_id_and_question_id"
-
-  create_table "dropdowns", force: :cascade do |t|
-    t.integer  "question_id"
-    t.integer  "answer_id"
-    t.string   "name"
-    t.boolean  "selected"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
+ActiveRecord::Schema.define(version: 20151011230342) do
 
   create_table "freeforms", force: :cascade do |t|
     t.integer  "question_id"
-    t.integer  "answer_id"
     t.text     "answer"
     t.boolean  "short"
     t.datetime "created_at",  null: false
@@ -39,15 +22,16 @@ ActiveRecord::Schema.define(version: 20151011201029) do
   end
 
   create_table "options", force: :cascade do |t|
-    t.integer  "question_id"
-    t.integer  "answer_id"
+    t.integer  "options_questions_id"
     t.string   "name"
-    t.boolean  "selected"
-    t.boolean  "radio"
-    t.boolean  "allow_other"
-    t.text     "other"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "type"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "options_questions", force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "option_id"
   end
 
   create_table "questions", force: :cascade do |t|
