@@ -13,6 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20151011201029) do
 
+  create_table "answers", force: :cascade do |t|
+    t.string   "type"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "taker_token"
+  end
+
   create_table "answers_questions", id: false, force: :cascade do |t|
     t.integer "question_id", null: false
     t.integer "answer_id",   null: false
