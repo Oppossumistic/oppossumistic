@@ -59,25 +59,18 @@ surveys = Survey.all
   )
 end
 
-# ANSWER TEMPLATES
-400.times do
-  Dropdown.create!(
+600.times do
+  Option.create!(
     name: Faker::Lorem.sentence(1),
-    selected: false,
-    question_id: rand(1..100),
-    answer_id: nil
+    options_question_id: rand(101..200),
+    type: ["Dropdown", "Radio", "Checkbox", "Truelean"].sample
   )
 end
 
-400.times do
-  Option.create!(
-    name: Faker::Lorem.sentence(1),
-    selected: false,
-    question_id: rand(101..200),
-    answer_id: nil,
-    radio: [true, false].sample,
-    allow_other: [true, false].sample,
-    other: nil
+600.times do |i|
+  OptionQuestion.create!(
+    question_id: (1..300).to_a.sample,
+    option_id: i
   )
 end
 
@@ -107,6 +100,13 @@ end
     radio: [true, false].sample,
     allow_other: [true, false].sample,
     other: nil
+  )
+end
+
+100.times do
+  Freeform.create!(
+    question_id: rand(201..300),
+    short: [true, false].sample
   )
 end
 
