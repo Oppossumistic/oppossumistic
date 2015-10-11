@@ -2,7 +2,7 @@ class Survey < ActiveRecord::Base
   belongs_to :user
   has_many :questions, dependent: :destroy
   has_many :freeforms, through: :questions
-  has_many :dropdowns, through: :questions
+  has_many :options_questions, through: :questions
   has_many :options, through: :questions
   has_many :answers_questions, through: :questions
   has_many :answers, through: :answers_questions

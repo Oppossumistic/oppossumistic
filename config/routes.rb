@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :answers
   root 'sessions#new'
 
   get 'login' => 'sessions#new'

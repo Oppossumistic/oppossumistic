@@ -1,4 +1,3 @@
-class Dropdown < ActiveRecord::Base
-
+class Dropdown < Options
 
 end
