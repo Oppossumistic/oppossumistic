@@ -10,4 +10,6 @@ class Question < ActiveRecord::Base
   has_many :options, foreign_key: 'answer_id'
 
   validates :query, presence: true
+
+  accepts_nested_attributes_for :answers
 end

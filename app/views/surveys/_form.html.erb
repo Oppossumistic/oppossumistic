@@ -10,19 +10,26 @@
       </ul>
     </div>
   <% end %>
+  <%= f.hidden_field f.user_id, current_user.id %>
+
   <% @survey.questions.each do |q| %>
-    <div class="field">
-      <%= f.label q.query %><br>
+    <p><%= q.query %></p>
+    <p><%= q.description %></p>
+    <div class="actions">
+      <%= link_to 'Edit', redirect_to edit_question_path(q) %>
     </div>
     <div class="field">
-      <%= f.label q.description %><br>
+      <%= q.label q.query %><br>
     </div>
-    <%= f.hidden_field q.user_id, current_user.id %>
+    <div class="field">
+      <%= q.label q.description %><br>
+    </div>
+
 
 
     <%# ff :_destroy %>
 
 
-  <% end %>
+    <% end %>
 
 <% end %>
