@@ -21,7 +21,6 @@ class SurveysController < ApplicationController
   # GET /surveys/new
   def new
     @survey = Survey.new
-    @survey.questions.build
   end
 
   # GET /surveys/1/edit
@@ -34,7 +33,7 @@ class SurveysController < ApplicationController
     @survey = Survey.new(survey_params)
 
     if @survey.save
-      redirect_to new_survey_question_path(@survey), notice: 'Survey was successfully created.'
+      render :edit, notice: 'Survey was successfully created.'
     else
       render :new
     end

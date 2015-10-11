@@ -1,11 +1,13 @@
 class Survey < ActiveRecord::Base
   belongs_to :user
-  has_many :questions
+  has_many :questions, dependent: :destroy
   has_many :freeforms, through: :questions
   has_many :dropdowns, through: :questions
   has_many :options, through: :questions
-  has_many :answers, through: :questions
+  has_many :answers_questions, through: :questions
+  has_many :answers, through: :answers_questions
   validates :title, presence: true
+  validates :user_id, presence: true
   accepts_nested_attributes_for :questions, reject_if: :all_blank
   accepts_nested_attributes_for :options
   accepts_nested_attributes_for :freeforms

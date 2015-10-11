@@ -21,38 +21,41 @@
     <%= f.text_area :description %>
   </p>
 
-  <p class="survey-edit-field">
-    <%= f.label :published, "Published", value: true %>
-    <%= f.radio_button :published, true %>
-    <%= f.label :published, "Not published", value: false %>
-    <%= f.radio_button :published, false %>
-  </p>
-
   <%= f.hidden_field :user_id, value: current_user.id %>
 
-  <h2>Questions</h2>
+  <% unless @survey.id.nil? %>
 
-  <%= f.fields_for :questions do |ff| %>
-    <p>
-      <%= ff.label :query %>
-      <%= ff.text_field :query, class: "question-edit-query" %>
+    <p class="survey-edit-field">
+      <%= f.label :published, "Published", value: true %>
+      <%= f.radio_button :published, true %>
+      <%= f.label :published, "Not published", value: false %>
+      <%= f.radio_button :published, false %>
     </p>
-    <p>
-      <%= ff.label :description %>
-      <%= ff.text_area :description, class: "question-edit-description" %>
-    </p>
-    <p>
-      <%= ff.label :required, "Required", value: true, class: "question-edit-required" %>
-      <%= ff.radio_button :required, true %>
-      <%= ff.label :required, "Not Required", value: false, class: "question-edit-required"  %>
-      <%= ff.radio_button :required, false  %>
-    </p>
-    <div class="actions">
-      <% ff.check_box :_destroy %>
-      <% ff.label :_destroy %>
-    </div>
-  <hr>
-  <% end %> <%# question form %>
+
+    <h2>Questions</h2>
+
+    <%= f.fields_for :questions do |ff| %>
+      <p>
+        <%= ff.label :query %>
+        <%= ff.text_field :query, class: "question-edit-query" %>
+      </p>
+      <p>
+        <%= ff.label :description %>
+        <%= ff.text_area :description, class: "question-edit-description" %>
+      </p>
+      <p>
+        <%= ff.label :required, "Required", value: true, class: "question-edit-required" %>
+        <%= ff.radio_button :required, true %>
+        <%= ff.label :required, "Not Required", value: false, class: "question-edit-required"  %>
+        <%= ff.radio_button :required, false  %>
+      </p>
+      <div class="actions">
+        <% ff.check_box :_destroy %>
+        <% ff.label :_destroy %>
+      </div>
+    <hr>
+    <% end %> <%# question form %>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
