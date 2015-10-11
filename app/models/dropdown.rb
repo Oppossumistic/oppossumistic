@@ -1,3 +1,4 @@
-class Dropdown < Question
+class Dropdown < ActiveRecord::Base
+
 
 end
