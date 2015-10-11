@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
       if params[:question_starter] == ['','']
         redirect_to @survey, notice: 'Survey was successfully created.'
       else
-        redirect_to :new(question_params)
+        redirect_to :new
       end
     else
       render :new

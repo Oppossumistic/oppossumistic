@@ -16,6 +16,18 @@
     <div class="actions">
       <%= link_to 'Edit', redirect_to edit_question_path(q) %>
     </div>
-  <% end %>
+    <div class="field">
+      <%= f.label q.query %><br>
+    </div>
+    <div class="field">
+      <%= f.label q.description %><br>
+    </div>
+    <%= f.hidden_field(:user_id, current_user.id) %>
+
+
+    <%# ff :_destroy %>
+
+
+    <% end %>
 
 <% end %>

@@ -1,5 +1,5 @@
-
-<%= form_for(@question) do |f| %>
+<%# this is a nested resource that requires both @survey and @uestion %>
+<%= form_for([@survey, @question]) do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -16,7 +16,11 @@
 <div>
 save and create next question as a
 <%= f.select(:question_starter) do %>
-  <% [['Submit all current questions and review survey', ''],['radio button question', {type: option, radio: true}], ['multiple choice question', {type: option, radio: false}]], [['short answer question', {type: freeform, short: true}]], [['long answer question', {type: freeform, short: false}]].each do |c| -%>
+  <% [['Submit all current questions and review survey', ''],
+    ['radio button question', {type: option, radio: true}],
+    ['multiple choice question', {type: option, radio: false}],
+    ['short answer question', {type: freeform, short: true}],
+    ['long answer question', {type: freeform, short: false}]].each do |c| -%>
     <%= content_tag(:option, c.first, value: c.last) %>
   <% end %>
 <% end %>

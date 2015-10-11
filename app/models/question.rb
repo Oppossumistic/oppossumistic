@@ -1,8 +1,10 @@
 class Question < ActiveRecord::Base
   belongs_to :survey
-  has_many :dropdowns, through: :answers
-  has_many :options, through: :answers
-  has_many :freeforms, through: :answers
   accepts_nested_attributes_for :answers
-  validates :title, presence: true
+  validates :query, presence: true
+  has_many :questions_answers
+  has_many :answers, through: :questions_answers
+  has_many :dropdowns
+  has_many :freeforms
+  has_many :options
 end

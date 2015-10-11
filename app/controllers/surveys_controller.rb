@@ -33,7 +33,7 @@ class SurveysController < ApplicationController
     @survey = Survey.new(survey_params)
 
     if @survey.save
-      redirect_to new_question_path(survey_params), notice: 'Survey was successfully created.'
+      redirect_to new_survey_question_path(@survey), notice: 'Survey was successfully created.'
     else
       render :new
     end
