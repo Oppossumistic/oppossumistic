@@ -19,5 +19,17 @@
   <% end %>
 </p>
 
+<% if @survey.questions.answers.count != 0 %>
+  <h1>"<%= @survey.title %>" Stats</h1>
+    <p>Most popular answers:</p>
+
+    <% @survey.questions.each do |q| %>
+      <%= q.query %>
+      <%= q.answers.group_by(:name).count(:name).sort(:desc).limit(1).pluck(:name) %>
+    <% end %>
+<% end %>
+
+
+
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
 <%= link_to 'Back', dashboard_path %>

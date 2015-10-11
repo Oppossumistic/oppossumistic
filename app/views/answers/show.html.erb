@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Answer text:</strong>
+  <%= @answer.answer_text %>
+</p>
+
+<p>
+  <strong>Answer int:</strong>
+  <%= @answer.answer_int %>
+</p>
+
+<p>
+  <strong>Taker token:</strong>
+  <%= @answer.taker_token %>
+</p>
+
+<%= link_to 'Edit', edit_answer_path(@answer) %> |
+<%= link_to 'Back', answers_path %>

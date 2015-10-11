@@ -1,4 +1,5 @@
 class Option < ActiveRecord::Base
-  belongs_to :question
-  validates :allow_other, presence: true
+  belongs_to :options_questions
+  validates :name, presence: true
+  validates :type, presence: true
 end

@@ -1,0 +1,2 @@
+class Truelean < Option
+end
