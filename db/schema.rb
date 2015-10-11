@@ -11,15 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009175836) do
+ActiveRecord::Schema.define(version: 20151011182249) do
 
-  create_table "answers", force: :cascade do |t|
-    t.string   "type"
-    t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "taker_token"
+  create_table "answers_questions", id: false, force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.integer "answer_id",   null: false
   end
+
+  add_index "answers_questions", ["answer_id", "question_id"], name: "index_answers_questions_on_answer_id_and_question_id"
 
   create_table "dropdowns", force: :cascade do |t|
     t.integer  "question_id"
@@ -52,7 +51,6 @@ ActiveRecord::Schema.define(version: 20151009175836) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "type"
     t.string   "query"
     t.text     "description"
     t.boolean  "required"

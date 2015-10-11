@@ -17,6 +17,8 @@ class QuestionsController < ApplicationController
   def new
     @survey = Survey.find(params[:survey_id])
     @question = Question.new
+    @question_starter = @survey.question_starter
+
   end
 
   def destroy

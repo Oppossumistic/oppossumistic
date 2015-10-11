@@ -51,21 +51,12 @@ end
 surveys = Survey.all
 200.times do
   Question.create!(
-    type: ["Dropdown", "Freeform", "Option"].sample,
     query: Faker::Lorem.sentence(3) + "?",
     description: Faker::Lorem.paragraphs.join("\n"),
     required: [true, false].sample,
     survey_id: surveys.sample.id
   )
 end
-
- # create_table "answers", force: :cascade do |t|
- #    t.string   "type"
- #    t.integer  "question_id"
- #    t.datetime "created_at",  null: false
- #    t.datetime "updated_at",  null: false
- #    t.string   "taker_token"
- #  end
 
  #  create_table "dropdowns", force: :cascade do |t|
  #    t.integer  "question_id"

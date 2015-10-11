@@ -1,5 +1,6 @@
 
-<% case @question_starter[0] %>
+<% byebug %>
+<% case @survey.question_starter[0] %>
 <% when 'radio button question' %>
 <%= render 'options/new', locals: {question_starter: question_starter[1]} %>
 <% when 'multiple choice question' %>
