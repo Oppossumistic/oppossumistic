@@ -11,6 +11,7 @@ class SurveysController < ApplicationController
   # GET /survey/take/:token
   def take
     @survey = Survey.find_by_token(params[:token])
+    redirect_to no_thanks_path unless @survey.published
   end
 
   # GET /surveys/1
@@ -63,8 +64,8 @@ class SurveysController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def survey_params
       params.require(:survey).permit(:title, :question_id, :token, :description,
-        :user_id,
-        questions_params: [:id, :type, :query, :description,
+        :user_id, :published,
+        questions_attributes: [:id, :type, :query, :description,
           :required, :_destroy])
     end
 end

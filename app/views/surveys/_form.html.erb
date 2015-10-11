@@ -10,26 +10,52 @@
       </ul>
     </div>
   <% end %>
-  <%= f.hidden_field f.user_id, current_user.id %>
 
-  <% @survey.questions.each do |q| %>
-    <p><%= q.query %></p>
-    <p><%= q.description %></p>
+  <p class="survey-edit-field">
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %>
+  </p>
+
+  <p class="survey-edit-field">
+    <%= f.label :description %><br/>
+    <%= f.text_area :description %>
+  </p>
+
+  <p class="survey-edit-field">
+    <%= f.label :published, "Published", value: true %>
+    <%= f.radio_button :published, true %>
+    <%= f.label :published, "Not published", value: false %>
+    <%= f.radio_button :published, false %>
+  </p>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <h2>Questions</h2>
+
+  <%= f.fields_for :questions do |ff| %>
+    <p>
+      <%= ff.label :query %>
+      <%= ff.text_field :query, class: "question-edit-query" %>
+    </p>
+    <p>
+      <%= ff.label :description %>
+      <%= ff.text_area :description, class: "question-edit-description" %>
+    </p>
+    <p>
+      <%= ff.label :required, "Required", value: true, class: "question-edit-required" %>
+      <%= ff.radio_button :required, true %>
+      <%= ff.label :required, "Not Required", value: false, class: "question-edit-required"  %>
+      <%= ff.radio_button :required, false  %>
+    </p>
     <div class="actions">
-      <%= link_to 'Edit', redirect_to edit_question_path(q) %>
+      <% ff.check_box :_destroy %>
+      <% ff.label :_destroy %>
     </div>
-    <div class="field">
-      <%= q.label q.query %><br>
-    </div>
-    <div class="field">
-      <%= q.label q.description %><br>
-    </div>
+  <hr>
+  <% end %> <%# question form %>
 
-
-
-    <%# ff :_destroy %>
-
-
-    <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 
 <% end %>

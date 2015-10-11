@@ -16,9 +16,9 @@ You have not created any surveys. Click here to create one!
       <tr>
         <td><%= survey.title %></td>
         <td><%= link_to 'Stats', survey %></td>
-        <% if survey.questions.answers.count == 0 %>
+        <%# if survey.questions.answers.count == 0 %>
         <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <% end %>
+        <%# end %>
         <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
