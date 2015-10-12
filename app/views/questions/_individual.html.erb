@@ -3,20 +3,40 @@
   <p class="question-title <%= "required" if q.required %>"><%= q.query %></p>
   <p class="question-description"><%= q.description %></p>
     <% if q.answer.answer_int == nil %>
+
       <% if q.freeforms.short == true %>
-        <%= f.label :answer %><br/>
-        <%= f.text_field :answer %>
+        <%= form_for(@survey, @question, @answer) do |ff| %>
+          <%= ff.text_field :answer_text %>
+        <% end %>
       <% else %>
-        <%= f.label :answer %><br/>
-        <%= f.text_area :answer %>
+        <%= form_for(@survey, @question, @answer) do |ff| %>
+          <%= ff.text_area :answer_text %>
+        <% end %>
       <% end %>
+
     <% else q.option_groups.options.each do |o| %>
-      <% if o.type == "dropdown" %>
-        <% f.label o.name %>
-        <% f.select o.name %>
-      <% elsif %>
-      <% elsif %>
-      <% else %>
+      <% if o.type == "Dropdown" %>
+        <%= form_for(@survey, @question, @answer) do |ff| %>
+          <%= ff.label o.name %>
+          <%= ff.select(:name) %>
+        <% end %>
+      <% elsif o.type == "Checkbox" do |o| %>
+        <%= form_for(@survey, @question, @answer) do |ff| %>
+          <%= ff.check_box o.name %>
+          <%= ff.label o.name %>
+        <% end %>
+      <% elsif o.type == "Radio" %>
+        <%= form_for(@survey, @question, @answer) do |ff| %>
+          <%= ff.radio_button o.name %>
+          <%= ff.label o.name %>
+        <% end %>
+      <% else o.type == "Truelean" %>
+        <%= form_for(@survey, @question, @answer) do |ff| %>
+          <%= ff.label o.name, "Yes", value: true %>
+          <%= ff.radio_button o.name, true %>
+          <%= ff.label o.name, "No", value: false %>
+          <%= ff.radio_button o.name, false  %>        
+        <% end %>
       <% end %>
     <% end %>
   </p>
