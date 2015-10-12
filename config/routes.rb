@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get 'dashboard' => 'dashboards#show'
 
   get 'survey/take/:token' => 'surveys#take'
-  
+
+  get 'thanks' => 'surveys#thanks'
   resources :surveys do
     resources :questions do
       resources :option_groups

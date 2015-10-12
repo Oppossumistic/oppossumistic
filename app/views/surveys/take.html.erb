@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<%= form_for(@survey, @questions, @answers) do |f| %>
+<%= form_for(@answer) do |f| %>
   <% if @survey.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
@@ -21,3 +21,4 @@
   <%= render partial: 'questions/individual', locals: {q: q} %>
 <% end %>
 <%= f.submit %>
+<% end %>
