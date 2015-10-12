@@ -4,7 +4,6 @@ class Question < ActiveRecord::Base
   has_many :options, through: :option_groups
   has_many :answers
   has_one :freeform
-
   validates :query, presence: true
 
   accepts_nested_attributes_for :answers

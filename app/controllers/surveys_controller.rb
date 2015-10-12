@@ -11,22 +11,8 @@ class SurveysController < ApplicationController
   # GET /survey/take/:token
   def take
     @survey = Survey.find_by_token(params[:token])
-    @answers = []
+    make_answers
     redirect_to no_thanks_path unless @survey.published
-    # @answers = [@answers.question_id.each do |qid|
-    #   {qid: }
-    #
-    #   {qid: 1, answer: ""}, {qid: 2, answer: ""}]
-    # answer_results=[]
-    # @answers.each do |a|
-    #   answer = Answer.new(question_id: a[:qid], )
-    #   answer_results << answer.save
-    # end
-    if true
-      redirect_to thanks_path
-    else
-      redirect_to thanks_error_path
-    end
   end
 
   # GET /surveys/1
@@ -70,6 +56,13 @@ class SurveysController < ApplicationController
   end
 
   private
+    def make_answers
+      @answer = []
+      @survey.answers.each do |a|
+      answer = Answer.new(question_id: a.question_id)
+      @answer << [answer.save]
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_survey
       @survey = Survey.find(params[:id])
