@@ -1,4 +1,4 @@
-<%# this is a nested resource that requires both @survey and @uestion %>
+<%# this is a nested resource that requires both @survey and @question %>
 <%= form_for([@survey, @question]) do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
