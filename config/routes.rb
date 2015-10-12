@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'thanks' => 'surveys#thanks'
 
+  post 'answers/bulk' => 'answers#bulk'
   resources :surveys do
     resources :questions do
       resources :option_groups

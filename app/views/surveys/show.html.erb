@@ -25,7 +25,6 @@
 
     <% @survey.questions.each do |q| %>
       <%= q.query %>
-      <%= q.answers.group_by(:name).count(:name).sort(:desc).limit(1).pluck(:name) %>
     <% end %>
 <% end %>
 

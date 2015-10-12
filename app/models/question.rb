@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
   has_many :option_groups, dependent: :destroy
   has_many :options, through: :option_groups
   has_many :answers
-
+  has_many :freeforms
   validates :query, presence: true
 
   accepts_nested_attributes_for :answers

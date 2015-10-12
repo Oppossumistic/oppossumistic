@@ -2,25 +2,30 @@
 
   <p class="question-title <%= "required" if q.required %>"><%= q.query %></p>
   <p class="question-description"><%= q.description %></p>
-    <% if q.answer.answer_int == nil %>
+  <% q.answers.each do |a| %>
+  <% if a.answer_int == nil %>
 
-      <% if q.freeforms.short == true %>
-        <%= form_for(@survey, @question, @answer) do |ff| %>
-          <%= ff.text_field :answer_text %>
-        <% end %>
-      <% else %>
-        <%= form_for(@survey, @question, @answer) do |ff| %>
-          <%= ff.text_area :answer_text %>
-        <% end %>
+    <% if q.freeforms.first && q.freeforms.first.short == true %>
+      <%= form_for([@question, @answer]) do |ff| %>
+        <%= ff.text_field :answer_text %>
       <% end %>
 
-    <% else q.option_groups.options.each do |o| %>
+    <% else %>
+
+      <%= form_for(@answer) do |ff| %>
+        <%= ff.text_area :answer_text %>
+      <% end %>
+
+    <% end %>
+
+  <% else %>
+    <% q.option_groups.options.each do |o| %>
       <% if o.type == "Dropdown" %>
-        <%= form_for(@survey, @question, @answer) do |ff| %>
+        <%= form_for([@question, @answer]) do |ff| %>
           <%= ff.label o.name %>
           <%= ff.select(:name) %>
         <% end %>
-      <% elsif o.type == "Checkbox" do |o| %>
+      <% elsif o.type == "Checkbox" %>
         <%= form_for(@survey, @question, @answer) do |ff| %>
           <%= ff.check_box o.name %>
           <%= ff.label o.name %>
@@ -30,13 +35,14 @@
           <%= ff.radio_button o.name %>
           <%= ff.label o.name %>
         <% end %>
-      <% else o.type == "Truelean" %>
+      <% elsif o.type == "Truelean" %>
         <%= form_for(@survey, @question, @answer) do |ff| %>
           <%= ff.label o.name, "Yes", value: true %>
           <%= ff.radio_button o.name, true %>
           <%= ff.label o.name, "No", value: false %>
-          <%= ff.radio_button o.name, false  %>        
+          <%= ff.radio_button o.name, false  %>
         <% end %>
       <% end %>
     <% end %>
-  </p>
+  <% end %>
+<% end %>
