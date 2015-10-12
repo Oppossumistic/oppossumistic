@@ -45,9 +45,8 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:survey_id, :type, :query, :description,
-      :required, answers_attributes: [:id, :question_id, :answer_id, :name,
-      :selected, :radio, :allow_other, :other, :answer, :short, :_destroy])
+      params.require(:question).permit(:survey_id, :query, :description,
+      :required, :_destroy)
     end
 
 end

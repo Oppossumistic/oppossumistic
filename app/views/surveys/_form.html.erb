@@ -24,7 +24,6 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
 
   <% unless @survey.id.nil? %>
-
     <p class="survey-edit-field">
       <%= f.label :published, "Published", value: true %>
       <%= f.radio_button :published, true %>
@@ -50,12 +49,12 @@
         <%= ff.radio_button :required, false  %>
       </p>
       <div class="actions">
-        <% ff.check_box :_destroy %>
-        <% ff.label :_destroy %>
+        <%= ff.check_box :_destroy %>
+        <%= ff.label :_destroy %>
       </div>
     <hr>
     <% end %> <%# question form %>
-  <% end %>
+  <% end %> <%# questions  %>
 
   <div class="actions">
     <%= f.submit %>
