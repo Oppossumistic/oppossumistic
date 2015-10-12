@@ -52,7 +52,7 @@ surveys = Survey.all
 
 300.times do
   Question.create!(
-    query: Faker::Lorem.sentence(3).last = "?",
+    query: Faker::Lorem.sentence(3).gsub(/\.$/, "?"),
     description: Faker::Lorem.paragraphs.join("\n"),
     required: [true, false].sample,
     survey_id: surveys.sample.id
