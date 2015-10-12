@@ -9,23 +9,14 @@ Rails.application.routes.draw do
   get 'dashboard' => 'dashboards#show'
 
   get 'survey/take/:token' => 'surveys#take'
-  
+
   resources :surveys do
     resources :questions do
       resources :option_groups
-    end
-  end
-  resources :surveys do
-    resources :questions do
       resources :freeforms
-    end
-  end
-  resources :surveys do
-    resources :questions do
       resources :answers
     end
   end
-
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

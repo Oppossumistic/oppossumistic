@@ -11,6 +11,7 @@ class SurveysController < ApplicationController
   # GET /survey/take/:token
   def take
     @survey = Survey.find_by_token(params[:token])
+    @answers = []
     redirect_to no_thanks_path unless @survey.published
   end
 
