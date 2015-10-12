@@ -52,7 +52,7 @@ surveys = Survey.all
 
 300.times do
   Question.create!(
-    query: Faker::Lorem.sentence(3) + "?",
+    query: Faker::Lorem.sentence(3).last = "?",
     description: Faker::Lorem.paragraphs.join("\n"),
     required: [true, false].sample,
     survey_id: surveys.sample.id
@@ -62,13 +62,13 @@ end
 600.times do
   Option.create!(
     name: Faker::Lorem.sentence(1),
-    options_question_id: rand(101..200),
+    option_group_id: rand(101..200),
     type: ["Dropdown", "Radio", "Checkbox", "Truelean"].sample
   )
 end
 
 600.times do |i|
-  OptionQuestion.create!(
+  OptionGroup.create!(
     question_id: (1..300).to_a.sample,
     option_id: i
   )
@@ -80,45 +80,4 @@ end
     short: [true, false].sample
   )
 end
-
-
-
-# ANSWERS
-400.times do
-  Dropdown.create!(
-    name: Faker::Lorem.sentence(1),
-    selected: false,
-    question_id: rand(1..100),
-  )
-end
-
-400.times do
-  Option.create!(
-    name: Faker::Lorem.sentence(1),
-    selected: false,
-    question_id: rand(101..200),
-    radio: [true, false].sample,
-    allow_other: [true, false].sample,
-    other: nil
-  )
-end
-
-100.times do
-  Freeform.create!(
-    question_id: rand(201..300),
-    short: [true, false].sample
-  )
-end
-
-
-
-
-
-
-AnswersQuestions.create!(
-   question_id: ,
-   answer_id:
-   )
-
-
 

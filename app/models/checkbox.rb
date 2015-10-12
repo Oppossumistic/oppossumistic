@@ -1,2 +1,3 @@
-class Checkbox < Options
+class Checkbox < Option
+
 end
