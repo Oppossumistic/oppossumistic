@@ -5,28 +5,56 @@
   <a href="<%= URI::join(root_url, take_survey_path(@survey.token)).to_s %>" target="_blank"><%= URI::join(root_url, take_survey_path(@survey.token)).to_s %></a>
 <% end %>
 
-<p>
-  <h3>Title:</h3>
-  <%= @survey.title %>
-  <%= @survey.description %>
-</p>
+<h1><%= @survey.title %></h1>
+<h2><%= @survey.description %></h2>
 
-<p>
+<% if @survey.questions.count > 0 %>
   <h3>Questions:</h3>
+  <ol>
   <% @survey.questions.each do |q| %>
-  <%= q.query %>
-  <%= q.description %>
+    <li class="question-view">
+      <strong><%= q.query %></strong>
+      <p><%= q.description %></p>
+      <% q.option_groups.each do |g| %>
+        <% if g.options.any? %>
+          <% case g.options.first.type %>
+          <% when "Dropdown" %>
+            <div class="showDropdown[<%= g.id %>]">
+              <%= collection_select(:g, :name, g.options, :id, :name) %>
+            </div>
+          <% when "Checkbox" %>
+            <div class="showCheckbox[<%= g.id %>]">
+              <%= collection_check_boxes(:g, :name, g.options, :id, :name) %>
+            </div>
+          <% when "Radio" %>
+            <div class="showRadio[<%= g.id %>]">
+              <%= collection_radio_buttons(:g, :name, g.options, :id, :name) %>
+            </div>
+          <% when "Truelean" %>
+            <div class="showTruelean[<%= g.id %>]">
+              <%= label_tag "True" %>
+              <%= radio_button(:g, "truelean", true) %>
+              <%= label_tag "False" %>
+              <%= radio_button(:g, "truelean", false) %>
+            </div>
+          <% end %>
+          <% g.options.each do |o| %>
+
+          <% end %>
+        <% end %>
+      <% end %>
+    </li>
   <% end %>
-</p>
 
-<% if @survey.answers.any? %>
-  <h1>"<%= @survey.title %>" Stats</h1>
-    <p>Most popular answers:</p>
+  <% if @survey.answers.any? %>
+    <h1>"<%= @survey.title %>" Stats</h1>
+      <p>Most popular answers:</p>
 
-    <% @survey.questions.each do |q| %>
-      <%= q.query %>
-      <%= q.answers.group_by(:name).count(:name).sort(:desc).limit(1).pluck(:name) %>
-    <% end %>
+      <% @survey.questions.each do |q| %>
+        <%= q.query %><br/>
+        <%= q.answers.count %><br/>
+      <% end %>
+  <% end %>
 <% end %>
 
 
