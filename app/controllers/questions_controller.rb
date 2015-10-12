@@ -4,9 +4,10 @@ class QuestionsController < ApplicationController
 
   def create
     if @question.save
-        redirect_to @survey, notice: 'Survey was successfully created.'
+      @option_group = OptionGroup.create(question_id: @question.id)
+      redirect_to @survey, notice: 'Survey was successfully created.'
     else
-        redirect_to :new
+      redirect_to :new
     end
   end
 

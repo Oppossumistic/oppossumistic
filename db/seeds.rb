@@ -81,3 +81,19 @@ end
   )
 end
 
+500.times do
+  Answer.create!(
+    question_id: rand(1..150),
+    answer_text: Faker::Lorem.paragraphs.join("\n"),
+    taker_token: SecureRandom.hex(6)
+  )
+end
+
+500.times do
+  Answer.create!(
+    question_id: rand(151..300),
+    answer_int: rand(1..4),
+    taker_token: SecureRandom.hex(6)
+  )
+end
+

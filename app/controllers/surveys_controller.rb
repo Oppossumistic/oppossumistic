@@ -13,6 +13,20 @@ class SurveysController < ApplicationController
     @survey = Survey.find_by_token(params[:token])
     @answers = []
     redirect_to no_thanks_path unless @survey.published
+    # @answers = [@answers.question_id.each do |qid|
+    #   {qid: }
+    #
+    #   {qid: 1, answer: ""}, {qid: 2, answer: ""}]
+    # answer_results=[]
+    # @answers.each do |a|
+    #   answer = Answer.new(question_id: a[:qid], )
+    #   answer_results << answer.save
+    # end
+    if true
+      redirect_to thanks_path
+    else
+      redirect_to thanks_error_path
+    end
   end
 
   # GET /surveys/1
