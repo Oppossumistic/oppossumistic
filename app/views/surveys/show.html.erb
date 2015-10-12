@@ -19,7 +19,7 @@
   <% end %>
 </p>
 
-<% if @survey.questions.answers.count != 0 %>
+<% if @survey.answers.any? %>
   <h1>"<%= @survey.title %>" Stats</h1>
     <p>Most popular answers:</p>
 

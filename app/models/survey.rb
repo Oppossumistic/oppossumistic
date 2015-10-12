@@ -6,7 +6,7 @@ class Survey < ActiveRecord::Base
   has_many :options, through: :option_groups
   validates :title, presence: true
   validates :user_id, presence: true
-  accepts_nested_attributes_for :questions, reject_if: :all_blank
+  accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :options
 
   before_create :generate_token
