@@ -11,27 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151011230342) do
+ActiveRecord::Schema.define(version: 20151012001208) do
 
-  create_table "freeforms", force: :cascade do |t|
-    t.integer  "question_id"
-    t.text     "answer"
-    t.boolean  "short"
+  create_table "answers", force: :cascade do |t|
+    t.text     "answer_text"
+    t.integer  "answer_int"
+    t.string   "taker_token"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "options", force: :cascade do |t|
-    t.integer  "options_questions_id"
-    t.string   "name"
-    t.boolean  "type"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+  create_table "checkboxes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "options_questions", force: :cascade do |t|
+  create_table "freeforms", force: :cascade do |t|
+    t.integer  "question_id"
+    t.text     "answer"
+    t.boolean  "short",       default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "option_groups", force: :cascade do |t|
     t.integer "question_id"
     t.integer "option_id"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.integer  "option_group_id"
+    t.string   "name"
+    t.string   "type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "questions", force: :cascade do |t|
@@ -43,6 +56,11 @@ ActiveRecord::Schema.define(version: 20151011230342) do
     t.integer  "survey_id"
   end
 
+  create_table "radios", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "surveys", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at",                  null: false
@@ -51,6 +69,11 @@ ActiveRecord::Schema.define(version: 20151011230342) do
     t.text     "description"
     t.integer  "user_id"
     t.boolean  "published",   default: false
+  end
+
+  create_table "trueleans", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

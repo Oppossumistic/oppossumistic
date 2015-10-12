@@ -1,9 +1,8 @@
 class Question < ActiveRecord::Base
   belongs_to :survey
-  has_many :answers_questions, dependent: :destroy
-  has_many :answers, through: :answers_questions
-  has_many :dropdowns, dependent: :destroy
-  has_many :freeforms, dependent: :destroy
+  has_many :option_groups
+  has_many :options, through: :option_groups
+  has_many :answers
   has_many :options, dependent: :destroy
 
   validates :query, presence: true

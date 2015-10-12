@@ -52,32 +52,25 @@ surveys = Survey.all
 
 300.times do
   Question.create!(
-    query: Faker::Lorem.sentence(3) + "?",
+    query: Faker::Lorem.sentence(3).gsub(/\.$/, "?"),
     description: Faker::Lorem.paragraphs.join("\n"),
     required: [true, false].sample,
     survey_id: surveys.sample.id
   )
 end
 
-# ANSWER TEMPLATES
-400.times do
-  Dropdown.create!(
+600.times do
+  Option.create!(
     name: Faker::Lorem.sentence(1),
-    selected: false,
-    question_id: rand(1..100),
-    answer_id: nil
+    option_group_id: rand(101..200),
+    type: ["Dropdown", "Radio", "Checkbox", "Truelean"].sample
   )
 end
 
-400.times do
-  Option.create!(
-    name: Faker::Lorem.sentence(1),
-    selected: false,
-    question_id: rand(101..200),
-    answer_id: nil,
-    radio: [true, false].sample,
-    allow_other: [true, false].sample,
-    other: nil
+600.times do |i|
+  OptionGroup.create!(
+    question_id: (1..300).to_a.sample,
+    option_id: i
   )
 end
 
@@ -87,38 +80,4 @@ end
     short: [true, false].sample
   )
 end
-
-
-
-# ANSWERS
-400.times do
-  Dropdown.create!(
-    name: Faker::Lorem.sentence(1),
-    selected: false,
-    question_id: rand(1..100),
-  )
-end
-
-400.times do
-  Option.create!(
-    name: Faker::Lorem.sentence(1),
-    selected: false,
-    question_id: rand(101..200),
-    radio: [true, false].sample,
-    allow_other: [true, false].sample,
-    other: nil
-  )
-end
-
-
-
-
-
-
-AnswersQuestions.create!(
-   question_id: ,
-   answer_id:
-   )
-
-
 

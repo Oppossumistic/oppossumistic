@@ -1,3 +1,3 @@
-class Dropdown < Options
+class Dropdown < Option
 
 end
